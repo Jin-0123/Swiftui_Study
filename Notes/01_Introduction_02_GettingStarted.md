@@ -19,8 +19,9 @@ SwiftUI는 스위프트의 강력함으로 애플의 모든 플랫폼을 커버�
 ~~~
 window.rootViewController = UIHostingController(rootView: contentView)
 ~~~
-_UIHostingController_는 SwiftUI 뷰인 ContentView를 위한 뷰 컨트롤러를 생성한다. 
-_UIHostingController_는 실재하는 앱 안에서 SwiftUI 뷰를 통합할 수 있도록 활성화한다.
+* UIHostingController 
+  - SwiftUI 뷰인 ContentView를 위한 뷰 컨트롤러를 생성한다. 
+  - 실재하는 앱 안에서 SwiftUI 뷰를 통합할 수 있도록 활성화한다.
 
 ### Previewing your ContentView
 ~~~
@@ -30,9 +31,16 @@ struct ContentView_Previews : PreviewProvider {
   }
 }
 ~~~
-ContentView_Previews는 ContentView의 인스턴트를 포함한 뷰를 가지고 있다.
-Preview는 어떤 데이터를 명시할지 확인하고, 다른 폰트사이즈와 컬러 스킴들을 비교하는 곳이다.
-Xcode의 **Resume** 버튼을 누르면 확인 가능하다. 버튼이 없다면, Editor Options > Canvas를 누르면 된다.
-Shortcut Key: Option-Command-P
+* ContentView_Previews는 ContentView의 인스턴트를 포함한 뷰를 가지고 있다.
+* Preview는 어떤 데이터를 명시할지 확인하고, 다른 폰트사이즈와 컬러 스킴들을 비교하는 곳이다.
+* Xcode의 **Resume** 버튼을 누르면 확인 가능하다. 버튼이 없다면, Editor Options > Canvas를 누르면 된다.
+* Shortcut Key: Option-Command-P
 
 ### Previewing in landscape
+ContentView_Previews의 previews안에 ContentView()을 다음의 코드로 바꾸면 iPhone-SE사이즈의 landscape로 회전된 프리뷰가 나타난다.
+~~~
+ContentView().previewLayout(.fixed(width: 568, height: 320))
+~~~
+
+## Creating your UI
+
