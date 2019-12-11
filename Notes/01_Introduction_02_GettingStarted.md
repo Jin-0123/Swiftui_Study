@@ -62,6 +62,7 @@ ContentView().previewLayout(.fixed(width: 568, height: 320))
 * IB에서는 뷰에서 여러 개의 객체를 드래그해서 선택하면 스택 뷰안에 embed할 수 있었지만 SwiftUI에서는 Embed를 한 객체 안에서만 수행할 수 있다. 
 
 ### Creating the guess color block
+
 ### Creating the button and slider
 
 ## Updating the UI
@@ -69,6 +70,37 @@ ContentView().previewLayout(.fixed(width: 568, height: 320))
 @State variable이 변경될 때, 뷰는 설정값을 무효화 시키고, body를 리컴퓨트한다. 
 
 ### Using _@State_ variables
+~~~
+let rTarget = Double.random(in: 0..<1)
+let gTarget = Double.random(in: 0..<1)
+let bTarget = Double.random(in: 0..<1)
+@State var rGuess: Double
+@State var gGuess: Double
+@State var bGuess: Double
+~~~
 
+### Updating the Color views
 
+## Making Reusable Views
 
+### Making the red slider
+
+### Binding
+* "$": 값이 변경되면 업데이트하기 위해서
+  - rguess: just read
+  - $rguess: read-write binding
+  
+### Extracting subviews
+
+### Live Preview
+
+### Presenting an Alert
+
+### Key point
+* Xcode canvas는 UI를 코드와 나란히 놓고 동기화 시키면서 반영할 수 있다. 한 면이 변하면 다른 면도 업데이트 된다.
+* 코드로도 canvas로도 도구의 조합으로도 UI를 만들 수 있다.
+* 스토리보드에서 사용했던 것처럼 수직/수평 스택으로 뷰의 객체를 구성할 수 있다.
+* Preview는 앱이 어떻게 생겼는지, 다른 셋팅에서 혹은 초기 데이타에서 어떻게 동작하는지 알 수 있게 해준다. 그리고 Live Preview에서는 시뮬레이터 없이 너의 앱과 인터렉션할 수 있다. 
+* 재사용 뷰를 만들 수 있다. Extract Subview를 사용하면 매우 쉽다.
+* SwiftUI는 @State variable의 값이 변경되면 언제든지 UI를 업데이트 한다. @Binding으로 subview의 참조를 넘기면 @State variable의 read-write 접근을 허용한다. 
+* alert을 띄우는 것은 짱 쉽다.
