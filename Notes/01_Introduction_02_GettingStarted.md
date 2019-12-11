@@ -43,4 +43,12 @@ ContentView().previewLayout(.fixed(width: 568, height: 320))
 ~~~
 
 ## Creating your UI
+SwiftUI앱은 스토리보트나 뷰 컨트롤러를 가지고 있지 않다.-ContentView.swift가 그들의 모든 작업을 감당한다. UI를 만들기 위해 코드와 object 라이브러리에서 드래그의 어떤 조합으로도 사용할 수 있다. 그리고 코드에서 직접 스토리보드와 같이 사용할 수 있다. 더 좋은 것은 모든 것은 동기화된다는 것이다.
 
+SwiftUI는 선언적이다. 너가 원하는 UI는 어떻게 생겼는지 선언하는 것이다. SwiftUI는 너의 선언을 유능한 코드로 변환하여 작업을 완료한다. Apple은 더 읽기 쉬운 코드를 유지할 수 있게 하므로써 많은 뷰를 만들 수 있도록 한다. 재사용가능한 파라미터로 표시되어진 뷰들을 특히 추천한다.
+
+### Some SwiftUI vacabulary
+* Canvas and Minimap
+앱의 뷰를 코드 에디터를 옆에 나란히 두고 canvas 안에서 미리볼 수 있다. 또한 minimap을 이용할 수 있다. 
+* Container views
+이전에 스택뷰를 사용했다면, HStack과 VStack을 사용하면서 SwiftUI에서 더 쉽게 만들 수 있다는 것을 알게 될 것이다. ZStack과 Group(Chapter9 에서 배우게 될  Containers)을 포함한 다른 컨테이너 뷰들도 있다.
