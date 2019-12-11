@@ -43,12 +43,32 @@ ContentView().previewLayout(.fixed(width: 568, height: 320))
 ~~~
 
 ## Creating your UI
-SwiftUI앱은 스토리보트나 뷰 컨트롤러를 가지고 있지 않다.-ContentView.swift가 그들의 모든 작업을 감당한다. UI를 만들기 위해 코드와 object 라이브러리에서 드래그의 어떤 조합으로도 사용할 수 있다. 그리고 코드에서 직접 스토리보드와 같이 사용할 수 있다. 더 좋은 것은 모든 것은 동기화된다는 것이다.
+* SwiftUI앱은 스토리보트나 뷰 컨트롤러를 가지고 있지 않다. ContentView.swift가 그들의 모든 작업을 감당한다. UI를 만들기 위해 코드와 object 라이브러리에서 드래그의 어떤 조합으로도 사용할 수 있다. 그리고 코드에서 직접 스토리보드와 같이 사용할 수 있다. 더 좋은 것은 모든 것은 동기화된다는 것이다.
 
-SwiftUI는 선언적이다. 너가 원하는 UI는 어떻게 생겼는지 선언하는 것이다. SwiftUI는 너의 선언을 유능한 코드로 변환하여 작업을 완료한다. Apple은 더 읽기 쉬운 코드를 유지할 수 있게 하므로써 많은 뷰를 만들 수 있도록 한다. 재사용가능한 파라미터로 표시되어진 뷰들을 특히 추천한다.
+* SwiftUI는 선언적이다. 너가 원하는 UI는 어떻게 생겼는지 선언하는 것이다. SwiftUI는 너의 선언을 유능한 코드로 변환하여 작업을 완료한다. Apple은 더 읽기 쉬운 코드를 유지할 수 있게 함으로써 많은 뷰를 만들 수 있도록 한다. 재사용가능한 파라미터로 표시되어진 뷰들을 특히 추천한다.
 
 ### Some SwiftUI vacabulary
-* Canvas and Minimap
-앱의 뷰를 코드 에디터를 옆에 나란히 두고 canvas 안에서 미리볼 수 있다. 또한 minimap을 이용할 수 있다. 
-* Container views
-이전에 스택뷰를 사용했다면, HStack과 VStack을 사용하면서 SwiftUI에서 더 쉽게 만들 수 있다는 것을 알게 될 것이다. ZStack과 Group(Chapter9 에서 배우게 될  Containers)을 포함한 다른 컨테이너 뷰들도 있다.
+* Canvas and Minimap: 앱의 뷰를 코드 에디터를 옆에 나란히 두고 canvas 안에서 미리볼 수 있다. 또한 minimap을 이용할 수 있다. 
+* Container views: 이전에 스택뷰를 사용했다면, HStack과 VStack을 사용하면서 SwiftUI에서 더 쉽게 만들 수 있다는 것을 알게 될 것이다. ZStack과 Group(Chapter9 에서 배우게 될  "Containers")을 포함한 다른 컨테이너 뷰들도 있다. 게다가 Containter뷰에는 너가 알고, 아끼는 UIKit의 많은 객체들을 위한 SwiftUI 뷰들이 있다. 예를 들면, Text, Button, Slider. 툴바에 + 버튼은 SwiftUI 뷰들의 라이브러리를 보여준다.
+* Modifiers: UIKit 객체들의 attributes나 properties을 설정하는 대신에 너는 modifiers를 첨부할 수 있다. 배경, 폰트, 패딩, 더 많은 것들을 위해.
+
+### Creating the target color block
+* SwiftUI에서는 body의 최상단 레벨에서는 하나 이상의 뷰를 가질 수 없다. 그래서 다른 뷰들은 container view 안에 넣어야 한다. 
+
+1. Embeded VStack
+2. Inspect 열어서 Text 변경하기 
+3. "+" 버튼 눌러서 VStack에 Color 삽입하기
+
+* IB에서는 뷰에서 여러 개의 객체를 드래그해서 선택하면 스택 뷰안에 embed할 수 있었지만 SwiftUI에서는 Embed를 한 객체 안에서만 수행할 수 있다. 
+
+### Creating the guess color block
+### Creating the button and slider
+
+## Updating the UI
+값이 변할 때 UI가 업데이트 되어야 한다면, @State variable로서 나타낸다. 
+@State variable이 변경될 때, 뷰는 설정값을 무효화 시키고, body를 리컴퓨트한다. 
+
+### Using _@State_ variables
+
+
+
