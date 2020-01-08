@@ -99,3 +99,6 @@ SwiftUI에는 앱을 통해서 어떻게 데이터가 흘러가는지 관리하�
 재사용 뷰에서는 @State는 잘 사용하지 않고 대신 @Binding 이나 @ObservedObject르 사용한다. 
 
 ### Observing a reference type object
+ObservableObject 사용해서 타이머 만들기
+
+- @Published, ObservableObject
