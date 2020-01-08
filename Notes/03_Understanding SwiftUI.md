@@ -96,7 +96,7 @@ SwiftUI에는 앱을 통해서 어떻게 데이터가 흘러가는지 관리하�
 - @ObservedObject: ObservableObject의 프로토콜을 따르는 참조타입의 디펜던시를 명시한다.
 - @EnvironmanetObject: 앱 내에서 모든 뷰에 보이는 공유된 데이터에 디펜던시를 명시한다. 바로 데이터를 패스할 수 있어서 편리. 부모가 자녀에게 또 그의 자녀에게 패스하는 것 대신.
 
-재사용 뷰에서는 @State는 잘 사용하지 않고 대신 @Binding 이나 @ObservedObject르 사용한다. 
+재사용 뷰에서는 @State는 잘 사용하지 않고 대신 @Binding 이나 @ObservedObject를 사용한다. 
 
 ### Observing a reference type object
 ObservableObject 사용해서 타이머 만들기
