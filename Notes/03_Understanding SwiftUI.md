@@ -22,19 +22,19 @@ SwiftUI 프레임워크는 그들이 의존하고 있는 데이터가 변경됨�
 
 너는 뷰의 상태가 어떻게 노출되는지, 뷰의 데이터 의존상태에서 SWiftUI가 어떻게 리액트 해야하는지를 선언한다. </br>
 
-- Views
+- View: </br>
 코드와 동기화되는 Declartive UI. </br>
 다른 플랫폼에도 API가 일관적이어서 한번 배우면 어디든지 적용할 수 있다. </br>
 Controls는 그들의 역할을 서술한다. 그들의 외형이아니라. 그래서 같은 컨트롤이 해당 플랫폼에 따라 적절하게 보이도록 한다. </br>
 
-- Data
-Declretice 데이터 의존성은 데이터가 변화할 때 뷰르 업데이트한다. </br>
+- Data: </br>
+Declretice 데이터 의존성은 데이터가 변화할 때 뷰를 업데이트한다. </br>
 뷰의 가능한 상태르 선언하고 각 상태에 따라 뷰가 어떻게 변하는지 선언한다. </br>
 
-- Navigation
+- Navigation: </br>
 조건적인 서브뷰를 네비게이션과 대체할 수 있음
 
-- Integration
+- Integration: </br>
 SwiftUI와 UIKit의 통합
 
 ## Getting started
@@ -64,5 +64,38 @@ SwiftUI는 작은 뷰들도 재사용 가능하게 생성한다. 그리고 어�
 ### Modifying reusable views
 HStack은 Padding()을 modifier로 가진다. 끝나는 지점에 space를 추가할 수 있다. 
 
-
 ### Adding modifiers in the right order
+SwiftUI는 추가한 순서대로 modifier를 적용한다. 백그라운트 컬러 다음에 패딩을 추가했다면, 패딩을 추가한 다음 백그라운드 컬러 추가했을 때와 다름 효과를 보일 것이다.
+
+컬러 입히고, cornerRadius 주면 cornerRadius 값이 적용되지만, 그 반대의 경우 cornerRadius 값이 적용되지 않음.
+백그라운드 컬러가 전체 사각형에 효과를 주기 때문.
+
+### Showing conditional views
+특정 조건이 true일 때만 나타나는 뷰: Alert, showAlert이 true일 때만 나타남.
+
+### Using ZStack
+Z방향은 스크린과 수직 방향 
+
+### Debugging
+엑스코드 라이브 프리뷰에서 런타임 디버깅을 하려면? Control+click OR Right-click 라이브 프리뷰버틍 > 디버깅 프리뷰 메뉴 선택
+
+## Declaring data dependencies
+
+### Guiding principles
+SwiftUI에는 앱을 통해서 어떻게 데이터가 흘러가는지 관리하는 두 가지 원리가 있음.
+
+- Data access = dependency: 뷰의 데이터의 일부를 읽는 것은 의존성을 만든다. 모든 뷰는 데이터 디펜던시(인풋/상태)를 위한 function 이다.
+- Single source of truth: 뷰의 모드 데이터 조각은 truth의 source를 가진다. </br>
+컬러 슬라이더에 @State를 선언하지 않은 이유는 중복된 source를 가졌기 때문이다. Value와 싱크되어 유지되어야한다. 대신 @Binding 값을 선언했고, 그것은 그 뷰가 또 다른 뷰로부터 @State 변수에 의존하고 있다는 것을 의미한다.
+
+### Tools for data flow
+**Property wrappers**: @State, @Binding, @ObservedObject, @EnvironmentObject
+
+- @State: 변수가 뷰에 의해 소유되고 있음. var로 할당됨. 값을 초기화해야함. private으로 사용할 것을 권장.
+- @Binding: 다른 뷰에 소유된 @State 변수에 디펜던시를 명시한다. $ prefix 사용하므로 다른 뷰에 변수의 상태를 패스. 받는 뷰의 입장에서는 @Binding 변수는 데이타의 reference. 값을 초기화할 필요는 없음. 이 참조는 뷰를 상태에 따라 수정하게 하며 데이터에 의존적이다.
+- @ObservedObject: ObservableObject의 프로토콜을 따르는 참조타입의 디펜던시를 명시한다.
+- @EnvironmanetObject: 앱 내에서 모든 뷰에 보이는 공유된 데이터에 디펜던시를 명시한다. 바로 데이터를 패스할 수 있어서 편리. 부모가 자녀에게 또 그의 자녀에게 패스하는 것 대신.
+
+재사용 뷰에서는 @State는 잘 사용하지 않고 대신 @Binding 이나 @ObservedObject르 사용한다. 
+
+### Observing a reference type object
