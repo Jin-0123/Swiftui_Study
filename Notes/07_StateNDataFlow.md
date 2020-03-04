@@ -17,7 +17,7 @@ With SwiftUI views are a function of state, not a sequence of events, with the a
 @State var name: String = "
 TextField("Enter your name", text: $name).multilineTextAlignment(.center)
 ~~~
-> @State 선언한 값은 $프리픽스르 붙여서 접근 가능, 속성은 변화되는 값이 바인딩될 수 있는 랩퍼를 생성하는 것이 중요.
+> @State 선언한 값은 $프리픽스르 붙여서 접근 가능, 변화되는 값이 바인딩될 수 있는 랩퍼를 생성한다는 것이 중요.
 > name 값이 업데이트 되면, 뷰는 무효화하고 재빌드.
 
 ~~~
@@ -34,6 +34,10 @@ name.binding = "Ray
 - @State를 효율적으로 사용하려면, 가능하다면 제한해야함. the derived binding or value를 대신 사용할 수 있다면.
 
 ## @State: Learning to share
-
+- @Binding: bound 값(변경에 허가가 필요한 값)의 매니저 오브젝트로 감싼다.
+- 그 값이 변경되지 않는데, 이니셜라이즈에서 넘겨진 @Binding 오브젝트는 허가를 받아야만함. 변경이 일어났을 때 @State 오브젝트에 알리기 위해서.
+- 만약에 상수로 @Binding 오브젝트를 만들기를 시도했다면 다음과 같은 오류를 볼 수 있다.
+- one at the declaration (“Property wrapper can only be applied to a var”)
+- when you try and set it during initialization ("Value of type ScoreView has no member answered").
 
 ###
