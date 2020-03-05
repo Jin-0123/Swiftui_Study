@@ -6,7 +6,6 @@ With SwiftUI views are a function of state, not a sequence of events, with the a
 ## What is state?
 - what state means: state의 의미가 뭔지
 - how SwiftUI’s specific definition applies: SwiftUI의 특정한 정의를 어떻게 적용하는지
-
 - 프러퍼티 랩퍼는 값이 변화하는 것을 자동으로 앱에 반영한다. boilerplate state management 작성하거나 바인딩코드 없음에도.
 
 ## Starting with @State
@@ -39,18 +38,15 @@ name.binding = "Ray
 - 만약에 상수로 @Binding 오브젝트를 만들기를 시도했다면 다음과 같은 오류를 볼 수 있다.
   1. one at the declaration (“Property wrapper can only be applied to a var”)
   2. when you try and set it during initialization ("Value of type ScoreView has no member answered")
-  
 - @Binding은 데이터에 first-class reference 이고, 재사용성이 아주 좋다. $ 프리픽스를 사용했던 @State에서와 같은 방법으로 바인딩한 값에 접근할 수 있음.
 - 이니셜라이저에서 셋팅할 때, 최선의 방법은 언더스코어를 변수에 프리픽스로 붙이는 것이다. 
   - `answered`: state warpper > Int를 셋하려고 하면 에러, Binding<Int> 타입임.
   - `_answered`: state value
 - 상수변수는 빌드타입에 셋, 바인딩변수는 이니셜라이저에서 셋. 양방향 업데이트가 필요하지 않은데 왜 바인드 해야하는가? 재빌드를 해야지만 갱신이 되기 때문.
 - `@State`를 사용하므로써 강제적으로 재빌드 시킴.
-
 - 뷰간의 메모리 공유는 메모리 측면에서는 효율적이지만, 뷰의 변경을 위해 각 값을 변경해야할 때는 혼동을 줄 수 있다. 
 - 데이터는 상태이고, 상태는 곧 디펜던시. 그 디펜던시에는 책임이 따름.
 - SwiftUI에서 언제, 어디서 디펜던시가 생겼는지 주의해야함.
-
 - 값을 재선언하면, 참 값의 두 개의 소스가 생성되고 SwiftUI는 state 모델을 무효화한다.
 - 여러 개의 뷰로 구성된 부모뷰의 @State 값을 전달하기를 원한다면, 객체 생성하면서 전달하셈.
 ~~~
@@ -60,6 +56,7 @@ if profileViewModel.isRegistered {
 } else {
 ...
 ~~~
+  
 - 이렇게 전달하다보면 점점 뷰모델이 복잡해짐. 그래서 두번째 옵션은 `ObservableObject protocol`임.
 - 복잡한 데이터 타입의 상태 관리를 단순화 시켜줌.
 - 구현에는 두 가지 방법이 있고, 먼저 API 변경이 필요없는 `@EnvironmentObject` 부터 시작.
