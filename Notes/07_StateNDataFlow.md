@@ -81,7 +81,6 @@ if profileViewModel.isRegistered {
 - `@EnvironmentObject` 스코프가 제한되게 설계되어있음. 상위 뷰 안에 이미 셋업되어있지 않으면 접근이 불가능.
 - 호출을 통해 전달되었거나 상위 뷰를 통해 전달된 특정 뷰에서만 사용가능.
 - global static class의 경우 다른 핸들링이 필요.
-
 - 계층이없는 뷰에 존재해야하는 모델이라면, 상위 뷰에서 하위 뷰로 모델을 전달하지 않는 경우 > @EnvironmentObject 좋은 선택임.
 - 예를 들면 User Preferences.
 
