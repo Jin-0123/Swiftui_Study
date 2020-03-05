@@ -98,6 +98,22 @@ if profileViewModel.isRegistered {
 - `@Environment` 를 사용하면 시스템 환경 설정에 접근 가능 (언어, 캘린더, 지역 등)
 
 ## The happy middle-ground: @ObservedObject
+- ObservableObject 프로토콜과 혼동 X, ObservedObject는 @EnvironmentObject와 비슷한 방식으로 ObservableObject 프로토콜을 구현한 attribute.
+- state-managed 객체를 생성하는 것을 제공. 앱의 환경설정 부분이 아닌!
+- `@EnvironmentObject` 와 달리 ` @ObservedObject` 는 멀티 뷰에서 자동으로 액세스 할 수 없으며 사용 가능하도록 상위 객체에서 전달되어야함.
+- @State는 뷰 내부에서 생성되어서 복잡한 뷰의 경우에는 하위 뷰에서 변경 내역을 알 수 없음. 또한 하나의 값만을 추적, 바인딩하므로 그 외의 변경에 대해서는 서브스크라이빙이나 메시징을 지원하지 않음.
+- @ObservedObject는 필수적인 셋업이나 global state 없이, @EnvironmentObject와 동일한 방식으로 Combine을 사용하여 모든 구독자 (또는 바운드 뷰)에 변경 내역을 보냄.
+- 개발자의 관리가 필요하고, @State보다 더 강한 외부 참조가 필요할 때 선호.
+- SwiftUI는 무효화된 서브뷰들을 체크하고 필요 시, 해당 뷰를 다시 빌드.
+
+### Moving from environment to hierarchical state
+### Hierarchical event chaos with state events
+- SwiftUI는 사용자 흐름이 아니라 데이터 상태에 관한 것. 그러나 이벤트에 응답을 위해서는 액션과 콜백을 사용.
+- 변화 트리거에 따라 상태나 뷰 계층이 재평가됨. 신중하지 않으면 불필요한 재구성이 일어날 수 있음.
+- `@ObservedObject` 자동적인 디펜던시 트래킹을 제공한다. 서브 뷰의 계층이 디펜던시를 향하고 있는 동안. 참 값이 어디에 있는지 트래킹하는 것을 최소화 시킴.
+- `@EnvironmentObject` 계층을 통해 직접 객체를 전달. 상위 뷰에 그 데이터가 전달되는 것을 허가함.
+
+## Combine and other beasts
 
 
 
