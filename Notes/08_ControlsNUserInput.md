@@ -189,8 +189,8 @@ HStack {
 		userManager.isUserNameValid() ? .green : .red
 		)
 		.padding(.trailing)
-	}
-	.padding(.bottom)
+}
+.padding(.bottom)
 ~~~
 
 ## Toggle Control
@@ -211,7 +211,7 @@ HStack {
 			.font(.subheadline)
 			.foregroundColor(.gray)
 	}
-	}
+}
 ~~~
 
 ## Other controls
@@ -239,7 +239,7 @@ public init<S, V>(
 	in bounds: ClosedRange<V>,
 	step: V.Stride = 1,
 	onEditingChanged: @escaping (Bool) -> Void = { _ in }
-	) where S : StringProtocol, V : Strideable
+) where S : StringProtocol, V : Strideable
 ~~~
 > * value: 바인딩할 값
 > * bounds: 범위
