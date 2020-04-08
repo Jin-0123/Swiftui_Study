@@ -88,3 +88,49 @@ HStack {
 * `.layoutPriority()` : 뷰의 순서를 바꿀 뿐 아니라 제안된 사이즈도 바꾼다.
 * 가장 낮은 우선순위에 있는 뷰를 줄이고, 높은 우선순위에 있는 뷰의 사이즈를 제안한다.
 
+### The HStack and the VStack
+* HStack, VStack 모두 컨테이너 뷰, 수평/수직 방향의 차이 말고는 동일하게 동작한다.
+* Stack의 2가지 파라미터
+	* alignment: 서브 뷰들이 어떻게 정렬될건지, 디폴트는 .center
+	* spacing: 자식 뷰들 사이의 간격, 디폴트는 nil(플랫폼 의존 간격). 0으로 셋팅하고 싶으면 명시해줘야함.
+	* content: 하나 이상의 서브 뷰들을 만드는 클로저
+		* `@ViewBuilder`: 활성화할 것이 무엇인지
+		
+#### A note on alignment
+* VStack은 `.center`, `.leading`, `.trailing` 3가지의 alignment를 가지지만 HStack은 `.center`, `.top`, `.bottom` 이 외에 2가지가 더 있음.
+	* `firstTextBaseline`: 가장 위의 텍스트 베이스 라인에 맞춤
+	* `lastTextBaseline` : 가장 및의 텍스트 베이스 라인에 맞춤
+	
+### The ZStack
+* AppKit이나 UIKit에는 없음.
+* `.layoutPriority()`는 Z-order에는 영향이 없다. 즉, body에 정의하면 순서를 바꿀 수 없다.
+* HStack의 경우 더 큰 서브뷰에 의해 높이가 결정되고, VStack의 경우 더 넓은 서브뷰에 의해 너비가 결정되었다면, ZStack의 너비와 높이 둘다 가장 넚고 큰 서브뷰에 의해 상대적으로 결정된다.
+
+### Other container views
+* 문서에 나와있진 않지만 서브뷰를 10개 초과로 넣을 수 없다는...
+
+## Back to Kuchi
+
+### User avatar
+
+### The Spacer view
+* `Spacer()`
+
+~~~
+VStack() {
+	Spacer()
+	Text(userName)
+		.font(.largeTitle) 
+		.foregroundColor(.white) 
+		.fontWeight(.bold) 
+		.shadow(radius: 7)
+}
+~~~
+> VStack에서 윗쪽에 공간을 주기 위해 spacer() 호출
+
+## Completing the challenge view
+
+
+
+
+
