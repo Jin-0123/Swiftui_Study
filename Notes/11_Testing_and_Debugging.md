@@ -47,13 +47,13 @@ func testAddingTwoDigits() {
         let displayText = display.label
         //XCTAssert(displayText == "8")
         XCTAssert(displayText == "8.0")
-    }
+}
 ~~~
 
 ## Simulating user interaction
 - 제스처 추가 > 스와이프 액션 이후에 memoryDisplay.exists 값 테스트
 ~~~
-unc testSwipeToClearMemory() {
+func testSwipeToClearMemory() {
         let app = XCUIApplication()
         app.launch()
         let threeButton = app.buttons["3"]
@@ -69,7 +69,7 @@ unc testSwipeToClearMemory() {
         memoryDisplay.swipeLeft()
         // 3
         XCTAssertFalse(memoryDisplay.exists)
-    }
+}
 ~~~
 
 * .isHittable: 현재 위치에서 클릭, 탭 할 수 있는 엘리먼트인가? 스크린이 꺼져있다면 not hittable
