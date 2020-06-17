@@ -137,11 +137,7 @@ Image(systemName: "car.fill")
 
 ## Drawing arcs and curves
 
-## Drawing quadratic curves
-
-## Drawing quadratic curve
-
-## Drawing quadratic curv
+## Drawing quadratic curve 
 
 * `.move` 에서 지정한 시작 지점과 `.addQuadCurve`에서 to까지의 지점까지 곡선으로 연결하는데, control 지점을 중간 지점으로 커브를 생성한다.
 * 네잎클로버 모양으로 곡선이 그려짐
