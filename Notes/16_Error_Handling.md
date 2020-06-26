@@ -81,24 +81,23 @@ Just("Hello")
 func getJoke(id: String) -> AnyPublisher<Joke, Error> {
 	let url = URL(string: "https://icanhazdadjoke.com/j/\(id)")!
 	var request = URLRequest(url: url)
-	
 	request.allHTTPHeaderFields = ["Accept": "application/json"]
-	
-    return URLSession.shared
-		.dataTaskPublisher(for: request)
-		.map(\.data)
-		.decode(type: Joke.self, decoder: JSONDecoder())
-		.mapError { error -> DadJokes.Error in
-			switch error {
-			case is URLError:
-				return .network
-			case is DecodingError:
-				return .parsing
-			default:
-				return .unknown
-			}
+
+	return URLSession.shared
+	.dataTaskPublisher(for: request)
+	.map(\.data)
+	.decode(type: Joke.self, decoder: JSONDecoder())
+	.mapError { error -> DadJokes.Error in
+		switch error {
+		case is URLError:
+			return .network
+		case is DecodingError:
+			return .parsing
+		default:
+			return .unknown
 		}
-		.eraseToAnyPublisher()
+	}
+	.eraseToAnyPublisher()
 }
 ~~~
 
