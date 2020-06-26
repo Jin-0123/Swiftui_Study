@@ -123,24 +123,24 @@ guard id.rangeOfCharacter(from: .letters) != nil else {
 example(of: "Catching and retrying") {
 	photoService
 		.fetchPhoto(quality: .high)
-	    .handleEvents(receiveSubscription: { 
+		.handleEvents(receiveSubscription: { 
 			_ in print("Trying ...")
 		}, receiveCompletion: {
-        	guard case .failure(let error) = $0 else { return }
-	        print("Got error: \(error)")
+	        	guard case .failure(let error) = $0 else { return }
+		        print("Got error: \(error)")
 		})
 		// 3번 재시도
-	    .retry(3)
+	    	.retry(3)
 		// high 퀄리티 패치 실패 시, low로 가져올 수 있도록 
-    	.catch { error -> PhotoService.Publisher in
-        	print("Failed fetching high quality, falling back to low quality")
-            return photoService.fetchPhoto(quality: .low)
-    	}
+    		.catch { error -> PhotoService.Publisher in
+        		print("Failed fetching high quality, falling back to low quality")
+			return photoService.fetchPhoto(quality: .low)
+	    	}
 		// 에러나면 대체되는 이미지
-	    .replaceError(with: UIImage(named: "na.jpg")!)
-    	.sink(receiveCompletion: { print("\($0)") }, receiveValue: { image in
-	        image
-    	    print("Got image: \(image)")
+		.replaceError(with: UIImage(named: "na.jpg")!)
+    		.sink(receiveCompletion: { print("\($0)") }, receiveValue: { image in
+			image
+			print("Got image: \(image)")
 		})
 		.store(in: &subscriptions)
 }
