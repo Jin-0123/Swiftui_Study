@@ -66,7 +66,7 @@ Just("Hello")
 			print("\(name) is too short!")
 		case .failure(.unknown):
 			  print("An unknown name error occurred")
-        }
+		}
 	}, receiveValue: { print("Got value \($0)") })
 	.store(in: &subscriptions) }
 ~~~
@@ -87,19 +87,19 @@ func getJoke(id: String) -> AnyPublisher<Joke, Error> {
     return URLSession.shared
 		.dataTaskPublisher(for: request)
 		.map(\.data)
-        .decode(type: Joke.self, decoder: JSONDecoder())
-        .mapError { error -> DadJokes.Error in
+		.decode(type: Joke.self, decoder: JSONDecoder())
+		.mapError { error -> DadJokes.Error in
 			switch error {
-       		case is URLError:
-	            return .network
-        	case is DecodingError:
-    	        return .parsing
-	        default:
-                return .unknown
-            }
+			case is URLError:
+				return .network
+			case is DecodingError:
+				return .parsing
+			default:
+				return .unknown
+			}
 		}
-        .eraseToAnyPublisher()
-    }
+		.eraseToAnyPublisher()
+}
 ~~~
 
 * API 호출 전에 검증
@@ -126,19 +126,19 @@ example(of: "Catching and retrying") {
 		.handleEvents(receiveSubscription: { 
 			_ in print("Trying ...")
 		}, receiveCompletion: {
-	        	guard case .failure(let error) = $0 else { return }
-		        print("Got error: \(error)")
+			guard case .failure(let error) = $0 else { return }
+			print("Got error: \(error)")
 		})
 		// 3번 재시도
-	    	.retry(3)
+		.retry(3)
 		// high 퀄리티 패치 실패 시, low로 가져올 수 있도록 
-    		.catch { error -> PhotoService.Publisher in
-        		print("Failed fetching high quality, falling back to low quality")
+		.catch { error -> PhotoService.Publisher in
+			print("Failed fetching high quality, falling back to low quality")
 			return photoService.fetchPhoto(quality: .low)
-	    	}
+		}
 		// 에러나면 대체되는 이미지
 		.replaceError(with: UIImage(named: "na.jpg")!)
-    		.sink(receiveCompletion: { print("\($0)") }, receiveValue: { image in
+		.sink(receiveCompletion: { print("\($0)") }, receiveValue: { image in
 			image
 			print("Got image: \(image)")
 		})
