@@ -29,7 +29,7 @@ Just("Shai")
 ~~~
 
 * 위의 코드에서 `.setFailureType(to: Error.self)`을 사용하면 다음과 같은 에러 발생.
-> referencing instance method 'assign(to:on:)' on 'Publisher' requires the types 'Error' and 'Never' be equivalent
+> referencing instance method 'assign(to: on:)' on 'Publisher' requires the types 'Error' and 'Never' be equivalent
 
 ## assertNoFailure
 
