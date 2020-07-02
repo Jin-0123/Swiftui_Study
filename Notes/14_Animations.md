@@ -46,7 +46,7 @@ FlightDetails(flight: flight)
 * 끝 지점에서 바운스 효과
 ~~~
 .animation(.interpolatingSpring(mass: 1.0, 
-								stiffness: 100.0,
+				stiffness: 100.0,
                                 damping: 10,
                                 initialVelocity: 0))
 ~~~
@@ -66,9 +66,9 @@ FlightDetails(flight: flight)
 * `initialVelocity`: 추가적인 초기동작 주기
 ~~~
 .animation(.interpolatingSpring(mass: 1, 
-								stiffness: 100, 
-								damping: 10, 
-								initialVelocity: 0))
+				stiffness: 100, 
+				damping: 10, 
+				initialVelocity: 0))
 ~~~
 * mass를 늘리면 애니메이션이 더 오래 지속되고 양쪽 끝에서 더 튀어오름.
 * mass가 작을수록 빨리 멈추고 양쪽 끝 지점의 바운스가 더 적다.
@@ -77,9 +77,10 @@ FlightDetails(flight: flight)
 * initial velocity를 증가시키면 더 바운스 된다. 음수로 지정하면 지연이 발생.
 
 ~~~
- .animation(.spring(response: 0.55, 
- 					dampingFraction: 0.45, 
-					blendDuration: 0))
+ .animation(
+ 	.spring(response: 0.55, 
+		dampingFraction: 0.45, 
+		blendDuration: 0))
 ~~~
 * `dampingFraction`: 얼마나 탄성이 있는가? 값이 0이면 절대 멈추지 않음. 0-1 사이의 값.
 * `response`: `dampingFraction`이 0 일 때, 1번 진동을 완성하는데 걸리는 시간을 정의한다.
