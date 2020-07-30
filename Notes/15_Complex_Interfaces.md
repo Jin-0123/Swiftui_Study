@@ -208,7 +208,9 @@ struct GridView<Content>: View where Content: View {
 	
 	// 3. 생성자 추가
 	init(columns: Int, items: [Int], @ViewBuilder content: @escaping (Int) -> Content) {
-		self.columns = columns self.items = items self.content = content
+		self.columns = columns 
+		self.items = items 
+		self.content = content
 	}
 
 	func elementFor(row: Int, column: Int) -> Int? { 
